@@ -1,24 +1,39 @@
-# Gromo FAQ RAG Chatbot
+# 🤖 Gromo FAQ RAG Chatbot with Web Search
 
-A Retrieval-Augmented Generation (RAG) chatbot for Gromo that answers questions based on:
-1. Company FAQ dataset
-2. Real-time web search results (using SERP API)
+![Gromo RAG Chatbot Screenshot](https://i.postimg.cc/xdWzXhkR/temp-Imageb95r-MZ.avif)
 
-## Features
+A powerful Retrieval-Augmented Generation (RAG) chatbot for Gromo that provides intelligent responses by combining:
+1. 📚 **Company FAQ dataset** - For accurate company-specific information
+2. 🔎 **Real-time web search results** - Using SERP API for up-to-date information
 
-- Supports multiple LLM options:
-  - Mistral AI API (recommended for best performance)
+## ✨ Features
+
+- **🧠 Advanced LLM Support**:
+  - [Mistral AI API](https://mistral.ai/) (recommended for best performance)
   - Qwen QwQ model (local deployment)
-  - Smaller models for testing
-- Implements RAG using Langchain for context-aware responses
-- Integrates web search via SERP API to provide up-to-date information
-- Multiple interface options:
-  - Gradio UI (recommended for ease of use)
-  - Streamlit UI
-  - FastAPI endpoints
-- Processes and cleans the Gromo FAQ dataset
+  - Configurable for various models based on your needs
+  
+- **📊 Enhanced Context Understanding**:
+  - Implements RAG architecture using Langchain
+  - Vector database for efficient similarity search
+  - Contextual response generation with relevant information retrieval
+  
+- **🌐 Real-time Web Search Integration**:
+  - SERP API integration for current information
+  - Blends FAQ knowledge with web search results
+  - Provides citations and sources for information
+  
+- **🖥️ Multiple Interface Options**:
+  - Gradio UI with modern interface (recommended)
+  - Streamlit UI alternative
+  - FastAPI endpoints for application integration
+  
+- **🛠️ Developer-Friendly Design**:
+  - Modular code structure
+  - Extensive documentation
+  - Easy customization options
 
-## Project Structure
+## 🗂️ Project Structure
 
 ```
 gromo_rag/
@@ -41,87 +56,122 @@ gromo_rag/
 └── README.md              # Project documentation
 ```
 
-## Quick Start
+## 🚀 Quick Start
 
-1. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
+### 1. Clone the repository
 
-2. Create a `.env` file with your API keys:
-   ```
-   # Mistral AI API key
-   MISTRAL_API_KEY=your_mistral_api_key_here
+```bash
+git clone https://github.com/yasboop/RAG-Websearch-Mistral.git
+cd RAG-Websearch-Mistral
+```
 
-   # SERP API key for Google search
-   SERPAPI_API_KEY=your_serpapi_key_here
-   ```
+### 2. Install dependencies:
 
-3. Initialize the vector store:
-   ```
-   python init_vector_store.py
-   ```
+```bash
+pip install -r requirements.txt
+```
 
-4. Run the application with your preferred interface:
-   ```
-   # Using Gradio (recommended)
-   python app_gradio.py
+### 3. Set up environment variables:
 
-   # Using Streamlit
-   streamlit run app.py
-
-   # Using FastAPI
-   python app_fastapi.py
-   ```
-
-## Testing
-
-Test the chatbot with sample questions:
+Create a `.env` file with your API keys:
 
 ```
+# Mistral AI API key
+MISTRAL_API_KEY=your_mistral_api_key_here
+
+# SERP API key for Google search
+SERPAPI_API_KEY=your_serpapi_key_here
+```
+
+### 4. Initialize the vector store:
+
+```bash
+python init_vector_store.py
+```
+
+### 5. Run the application:
+
+```bash
+# Using Gradio (recommended)
+python app_gradio.py
+
+# Using Streamlit
+streamlit run app.py
+
+# Using FastAPI
+python app_fastapi.py
+```
+
+## 🧪 Testing
+
+Test the chatbot functionality with sample questions:
+
+```bash
 python test_chatbot.py
 ```
 
 Or test with a specific question:
 
-```
+```bash
 python test_chatbot.py "What financial products does Gromo offer?"
 ```
 
-## Customization
+## ⚙️ Customization
 
-You can customize the chatbot by modifying the configuration in `src/config.py`:
+Customize the chatbot by modifying the configuration in `src/config.py`:
 
-- Change the model settings:
-  - Use Mistral AI API by setting `USE_MISTRAL_API = True`
-  - Use local Qwen model by setting `USE_MISTRAL_API = False` and `USE_QUANTIZED_MODEL = False`
-  - Use quantized model for AWS deployment by setting `USE_QUANTIZED_MODEL = True`
-- Adjust the RAG parameters
-- Enable/disable web search
-- Modify the prompt templates
+- **Model Settings**:
+  - Use Mistral AI API: `USE_MISTRAL_API = True`
+  - Use local Qwen model: `USE_MISTRAL_API = False` and `USE_QUANTIZED_MODEL = False`
+  - Use quantized model for AWS deployment: `USE_QUANTIZED_MODEL = True`
+  
+- **RAG Parameters**:
+  - Adjust context window size
+  - Modify similarity search parameters
+  - Fine-tune retrieval strategy
+  
+- **Web Search Options**:
+  - Enable/disable web search
+  - Change search result count
+  - Adjust search relevance parameters
 
-## API Usage
+## 🔌 API Usage
 
-You can also use the chatbot through the FastAPI interface:
+The chatbot can be integrated into other applications through the FastAPI interface:
 
 1. Start the API server:
-   ```
+   ```bash
    python app_fastapi.py
    ```
 
 2. Send requests to the API:
-   ```
-   curl -X POST http://localhost:8000/chat -H "Content-Type: application/json" -d '{"query": "What is Gromo?"}'
+   ```bash
+   curl -X POST http://localhost:8000/chat \
+     -H "Content-Type: application/json" \
+     -d '{"query": "What is Gromo?"}'
    ```
 
-## Getting a SERP API Key
+## 🔑 Getting a SERP API Key
 
-To use the web search functionality, you need to get a SERP API key:
+To use the web search functionality:
 
 1. Visit [https://serpapi.com/](https://serpapi.com/) and sign up for an account
 2. Navigate to your dashboard to find your API key
 3. Add the API key to your `.env` file as `SERPAPI_API_KEY`
 
-## License
+## 🌟 Advanced Usage
+
+### AWS Deployment
+
+This project includes scripts for AWS EC2 deployment. See `AWS_DEPLOYMENT.md` for detailed instructions.
+
+### Custom Knowledge Base
+
+To use a different knowledge base:
+1. Replace the CSV file in the `data/` directory
+2. Update the data loading logic in `src/data_loader.py` if necessary
+3. Reinitialize the vector store with `python init_vector_store.py`
+
+## 📄 License
 
 MIT 
